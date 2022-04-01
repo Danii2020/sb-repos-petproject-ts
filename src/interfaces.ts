@@ -54,7 +54,7 @@ export interface IApiShapeResponse {
     svn_url:string;
     homepage:string;
     size:number;
-    stargazerscount:number;
+    stargazers_count:number;
     watchers_count:number;
     language:string;
     has_issues:boolean;
