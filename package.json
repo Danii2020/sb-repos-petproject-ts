@@ -7,12 +7,15 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "node dist/index.js"
   },
   "keywords": [
     "typescript",
     "github"
   ],
   "author": "Daniel Erazo",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
 }
