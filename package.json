@@ -1,0 +1,18 @@
+{
+  "name": "petprojectreposts",
+  "version": "1.0.0",
+  "description": "This is the module 4 pet project for the SB training plan",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "typescript",
+    "github"
+  ],
+  "author": "Daniel Erazo",
+  "license": "MIT"
+}
