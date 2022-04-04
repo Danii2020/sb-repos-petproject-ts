@@ -55,50 +55,20 @@ export const getFiveLastUpdated = (repos:IRepos[]):IRepos[] => {
     }).slice(0, 5);
 }
 
-
+// Get the top five repos by stars, using the sort method.
 export const getTopFiveStars = (repos:IRepos[]):IRepos[] => {
     return repos.sort((a, b) => {
         return b.stars - a.stars;
     }).slice(0, 5);
 }
 
+// Sort the repos alphabetically by their names.
 export const sortRepoAlpha = (repos:IRepos[]):IRepos[] => {
     return repos.sort((a, b) => {
         return a.name === b.name ? 0 : a.name > b.name ? 1 : -1;
     });
 }
-
-(async () => {
-    // Retrieve and store all repos.
-    const repos = await getRepos(API_URL);
-
-    // Retrieve and store repos with more than five stars.
-    const moreThanFiveRepos = getMoreThanFiveStars(repos);
-
-    
-    // Retrieve and store the sum of stars in all repos.
-    const sumOfStars = getSumOfStars(repos);
-
-
-    // Retrieve and store the last five updated repos.
-    const fiveLastUpdatedRepos = getFiveLastUpdated(repos);
-
-    const topFiveStars = getTopFiveStars(repos);
-
-    const repoSorted = sortRepoAlpha(repos);
-    // Show the results in console.
-    console.log("Repos with more than five stars:\n");
-    console.log(moreThanFiveRepos);
-
-    console.log("Five last updated repos:\n");
-    console.log(fiveLastUpdatedRepos);
-
-    console.log("The sum of all stars in repos is:\n");
-    console.log(sumOfStars);
-
-    console.log("The top 5 stars are:\n");
-    console.log(topFiveStars);
-
-    console.log("The sorted repo is:\n");
-    console.log(repoSorted);
-})();
+// Then, filter the sorted repos which names don't start with 'h'.
+export const removeHRepos = (sortedRepos:IRepos[]):IRepos[] => {
+    return sortedRepos.filter(repo => repo.name[0] !== 'h')
+}

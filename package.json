@@ -6,9 +6,8 @@
   "directories": {
     "test": "test"
   },
-  
   "scripts": {
-    "test": "node dist/index.js"
+    "test": "node dist/main.js"
   },
   "keywords": [
     "typescript",
@@ -18,5 +17,8 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.26.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23"
   }
 }
