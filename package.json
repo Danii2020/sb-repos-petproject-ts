@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node dist/main.js"
+    "main": "node dist/main.js",
+    "test": "mocha dist/test/index.spec.js"
   },
   "keywords": [
     "typescript",
@@ -19,6 +20,8 @@
     "axios": "^0.26.1"
   },
   "devDependencies": {
-    "@types/node": "^17.0.23"
+    "@types/mocha": "^9.1.0",
+    "@types/node": "^17.0.23",
+    "mocha": "^9.2.2"
   }
 }

@@ -1,10 +1,10 @@
 import axios from "axios";
-import { IApiShapeResponse, IRepos } from "./interfaces";
+import { IApiResponse, IRepos } from "./interfaces";
 
 
 const API_URL = "https://api.github.com/orgs/stackbuilders/repos";
 // Fetch data from the GitHub API.
-const fetchData = async (api_url:string):Promise<IApiShapeResponse[]> => {
+const fetchData = async (api_url:string):Promise<IApiResponse[]> => {
     try {
         const response = await axios.get(api_url);
         return response.data; 
@@ -15,10 +15,10 @@ const fetchData = async (api_url:string):Promise<IApiShapeResponse[]> => {
 }
 
 // Get repos with recursion to retrieve all the pages.
-const getReposR = async (url_api:string, pageNumber:number, repoData:IApiShapeResponse[]):Promise<IApiShapeResponse[]> => {
+const getReposR = async (url_api:string, pageNumber:number, repoData:IApiResponse[]):Promise<IApiResponse[]> => {
     let parsePage = (pageNumber:number) => url_api + `?per_page=100&page=${pageNumber}`;
     let newUrl:string = parsePage(pageNumber);
-    const fetchedRepos:IApiShapeResponse[] = await fetchData(newUrl);
+    const fetchedRepos:IApiResponse[] = await fetchData(newUrl);
     if (fetchedRepos.length === 0) return repoData;
     return getReposR(url_api, pageNumber + 1, repoData.concat(fetchedRepos));
 }
@@ -26,7 +26,7 @@ const getReposR = async (url_api:string, pageNumber:number, repoData:IApiShapeRe
 // Get repos by calling the recursive function above.
 // Then transform into an JS object.
 export const getRepos = async (url_api:string):Promise<IRepos[]> => {
-    const reposArray:IApiShapeResponse[] = await getReposR(url_api, 1, []);
+    const reposArray:IApiResponse[] = await getReposR(url_api, 1, []);
     return reposArray.map(repo => ({
         id:repo.id,
         name:repo.full_name.split("/")[1],

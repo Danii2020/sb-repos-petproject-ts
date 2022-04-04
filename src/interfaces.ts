@@ -1,4 +1,4 @@
-export interface IApiShapeResponse {
+export interface IApiResponse {
     id:number;
     name:string;
     full_name:string;
